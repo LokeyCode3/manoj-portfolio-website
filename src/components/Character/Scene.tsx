@@ -28,6 +28,9 @@ const Scene = () => {
       const scene = sceneRef.current;
 
       const renderer = new THREE.WebGLRenderer({
+        preserveDrawingBuffer: false,
+        stencil: false,
+        depth: true,
         alpha: true,
         antialias: true,
       });
@@ -117,6 +120,8 @@ const Scene = () => {
             interpolation.y,
             THREE.MathUtils.lerp
           );
+        }
+        if (screenLight) {
           light.setPointLight(screenLight);
         }
         const delta = clock.getDelta();
